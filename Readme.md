@@ -24,5 +24,5 @@ Nessa parte também é apresentada a instalação das ferramentas utilizadas par
 
 <h3>Parte II:</h3>
 <p align="justify">
-Nesta parte se dá ínicio ao estudo das estruturas básicas da linguagem, como construir aplicativos básicos com a linguagem C# e examinar a composição do ponto de entrada (execução) de um programa C#.
+Nesta parte se dá início ao estudo das estruturas básicas da linguagem, como construir aplicativos básicos com a linguagem C# e examinar a composição do ponto de entrada (execução) de um programa C#.
 </p>

@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part_II", "Part_II", "{62F58BE7-37DA-42A8-AEE5-6B5950A117E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter3", "Part_II\Chapter3\Chapter3.csproj", "{DB27436B-BA34-4331-913B-32D881DECFFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,5 +18,22 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|x64.Build.0 = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|x64.ActiveCfg = Release|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|x64.Build.0 = Release|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB27436B-BA34-4331-913B-32D881DECFFA}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB27436B-BA34-4331-913B-32D881DECFFA} = {62F58BE7-37DA-42A8-AEE5-6B5950A117E2}
 	EndGlobalSection
 EndGlobal
