@@ -38,6 +38,10 @@ namespace Chapter3
                 Console.WriteLine("Arg: {0}", arg);
             }
 
+            // Chama o método ShowEnvironmentDetails() para imprimir algumas informações sobre o ambiente
+            // de execução atual que hospeda a aplicação.
+            ShowEnvironmentDetails();
+
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
 
@@ -77,6 +81,18 @@ namespace Chapter3
         // static Task<int> Main(string[]) { }
         #endregion
 
-        
+        static void ShowEnvironmentDetails()
+        {
+            // Informa os discos rígidos locais que estão na máquina hospedeira da aplicação
+            // e alguns outros detalhes interessantes.
+            foreach (string drive in Environment.GetLogicalDrives())
+            {
+                Console.WriteLine("Disco Rígido: {0}", drive);
+            }
+
+            Console.WriteLine("SO: {0}", Environment.OSVersion);
+            Console.WriteLine("Número de Processadores: {0}", Environment.ProcessorCount);
+            Console.WriteLine("Versão .NET Core: {0}", Environment.Version);
+        }
     }
 }
