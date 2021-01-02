@@ -4,7 +4,6 @@
 
 
 using System;
-using System.Threading.Tasks;
 
 namespace Chapter3
 {
@@ -21,6 +20,24 @@ namespace Chapter3
             Console.WriteLine("***** Meu primeiro aplicativo em C# *****");
             Console.WriteLine();
 
+            // Processa os argumentos passados durante a chamada ao método Main.
+            for (int i = 0; i < args.Length; i++)
+            {
+                Console.WriteLine("Argumento: {0}", args[i]);
+            }
+
+            // Quebra de linha.
+            Console.WriteLine("");
+            
+            // Outra maneira de obter os argumentos de linha de comando utilizando o método GetCommandLineArgs()
+            // da classe Environment que está no namespace System.
+            // O primeiro argumento é o nome da própria aplicação com o todo o caminho do diretório da aplicação.
+            string[] theArgs = Environment.GetCommandLineArgs();
+            foreach (string arg in theArgs)
+            {
+                Console.WriteLine("Arg: {0}", arg);
+            }
+
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
 
@@ -32,6 +49,7 @@ namespace Chapter3
         }
 
         #region Possíveis variações do método Main.
+
         // Os métodos Main apresentados estão comentados, servindo apenas como exemplos.
 
         // Precisa retornar um valor inteiro antes de finalizar a execução
@@ -58,5 +76,7 @@ namespace Chapter3
         // static Task Main(string[]) { }
         // static Task<int> Main(string[]) { }
         #endregion
+
+        
     }
 }
