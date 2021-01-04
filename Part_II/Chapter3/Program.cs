@@ -4,6 +4,7 @@
 
 
 using System;
+using System.Text;
 
 namespace Chapter3
 {
@@ -55,6 +56,14 @@ namespace Chapter3
             UseDatesAndTime();
             DigitSeparators();
             BinaryLiterals();
+            BasicStringFuncionality();
+            EscapeChars();
+            StringConcatenation();
+            StringInterpolation();
+            StringEquality();
+            StringEqualitySpecifyingCompareRules();
+            StringsAreImmutable();
+            FunWithStringBuilder();
 
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
@@ -344,6 +353,147 @@ namespace Chapter3
             Console.WriteLine("16: {0}", 0b_0001_0000);
             Console.WriteLine("32: {0}", 0b_0010_0000);
             Console.WriteLine("64: {0}", 0b_0100_0000);
+        }
+
+        //
+        // Tópico: Working with Data String
+        // Trabalhando com dados do tipo string.
+        //
+
+        // Método para apresentar funcionalidades básicas de strings.
+        private static void BasicStringFuncionality()
+        {
+            Console.WriteLine("\n\nMétodo BasicStringFuncionality():");
+
+            //
+            string firstName = "Ricardo Medina";
+            Console.WriteLine("Valor de firstName: {0}", firstName);
+            Console.WriteLine("firstName possui {0} caracteres: ", firstName.Length);
+            Console.WriteLine("firstName em caixa alta: {0}", firstName.ToUpper());
+            Console.WriteLine("firstName em caixa baixa: {0}", firstName.ToLower());
+            Console.WriteLine("firstName possui a letra M?: {0}", firstName.Contains("M"));
+            Console.WriteLine("firstName após uma alteração: {0}", firstName.Replace("o", ""));
+        }
+
+        // Método para apresentar os conceitos de concatenação de strings
+        private static void StringConcatenation()
+        {
+            Console.WriteLine("\n\nMétodo StringConcatenation():");
+
+            // Concatenação feita utilizando o operador +
+            string s1 = "Programado o";
+            string s2 = "PsychoDrill (PTP)";
+            string s3 = s1 + s2;
+            Console.WriteLine(s3);
+
+            // Concatenação utilizando String.Concat.
+            string s4 = String.Concat(s1, s2);
+            Console.WriteLine("String.Concat(s1, s2): {0}", s4);
+        }
+
+        // Caracteres de escape
+        private static void EscapeChars()
+        {
+            Console.WriteLine("\n\nMétodo EscapeChars():");
+
+            // Caracteres de escape em ação!
+            string strWithStr = "Modelo\tCor\tVelocidade\tNome\a";
+            Console.WriteLine(strWithStr);
+            Console.WriteLine("Todos gostam do \"Hello World\"\a");
+
+            // Três quebras de linha e um beep no final.
+            Console.WriteLine("\n\n\n\a");
+        }
+
+        // Interpolação de strings - string interpolation
+        private static void StringInterpolation()
+        {
+            Console.WriteLine("\n\nMétodo StringInterpolation():");
+
+            // Algumas variáveis para testes.
+            int age = 35;
+            string name = "Ricardo";
+
+            // Utilizando a sintaxe de placeholders {0}, {1}, etc.
+            Console.WriteLine("Olá {0}, você está com {1} anos de idade", name, age);
+
+            // Interpolação de strings.
+            Console.WriteLine($"Olá {name.ToUpper()} você está com {age} anos de idade");
+        }
+
+        // Iqualdade de strings
+        private static void StringEquality()
+        {
+            Console.WriteLine("\n\nMétodo StringEquality():");
+
+            string s1 = "Hello!";
+            string s2 = "Yo!";
+            Console.WriteLine("s1 = {0}", s1);
+            Console.WriteLine("s2 = {0}", s2);
+
+            // Comparação de strings para saber se são iguais (possuem o mesmo valor!)
+            Console.WriteLine("s1 == s2: {0}", s1 == s2);
+            Console.WriteLine("s1 == Hello!: {0}", s1 == "Hello!");
+            Console.WriteLine("s1 == HELLO!: {0}", s1 == "HELLO!");
+            Console.WriteLine("s1 == hello!: {0}", s1 == "hello!");
+            Console.WriteLine("s1.Equals(s2): {0}", s1.Equals(s2));
+            Console.WriteLine("Yo!.Equals(s2): {0}", "Yo!".Equals(s2));
+        }
+
+        // Comparação avançada de strings com diversas regras.
+        private static void StringEqualitySpecifyingCompareRules()
+        {
+            Console.WriteLine("\n\nMétodo StringEqualitySpecifyingCompareRules():");
+
+            //
+            string s1 = "Hello!";
+            string s2 = "Yo!";
+            Console.WriteLine("s1 = {0}", s1);
+            Console.WriteLine("s2 = {0}", s2);
+            Console.WriteLine();
+
+            // Realiza a comparação de strings alterando a regra padrão!
+            Console.WriteLine("Regra padrão: s1={0}, s2={1} | s1.Equals(s2): {2}", s1, s2, s1.Equals(s2));
+            Console.WriteLine("Ignora a capitalização das letras: s1.Equals(s2, StringComparison.OrdinalIgnoreCase) {0}", s1.Equals(s2, StringComparison.OrdinalIgnoreCase));
+            Console.WriteLine("Ignora a capitalização das letras, cultura invariante: s1.Equals(s2, StringComparison.OrdinalIgnoreCase) {0}", s1.Equals(s2, StringComparison.InvariantCultureIgnoreCase));
+            Console.WriteLine();
+
+            Console.WriteLine("Regra padrão: s1={0}, s2={1} | s1.Index(\"E\"): {2}", s1, s2, s1.IndexOf("E"));
+            Console.WriteLine("Ignora a capitalização das letras: s1.Index(\"E\", StringComparison.OrdinalIgnoreCase) {0}", s1.IndexOf("E", StringComparison.OrdinalIgnoreCase));
+            Console.WriteLine("Ignora a capitalização das letras, cultura invariante: s1.Index(\"E\", StringComparison.InvariantCultureIgnoreCase) {0}", s1.IndexOf("E", StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        private static void StringsAreImmutable()
+        {
+            Console.WriteLine("\n\nMétodo StringsAreImmutable():");
+
+            // Strings são imutáveis!
+            string s1 = "Esta é minha strings";
+            Console.WriteLine("s1 = {0}", s1);
+
+            string upperString = s1.ToUpper();
+            Console.WriteLine("upperString = {0}", upperString);
+
+            Console.WriteLine("s1 = {0}", s1);
+        }
+
+        // Trabalhando com grande quantidades de textos!
+        private static void FunWithStringBuilder()
+        {
+            Console.WriteLine("\n\nMétodo FunWithStringBuilder():");
+
+            //
+            StringBuilder sb = new StringBuilder("***** Games fantásticos *****");
+            sb.Append("\n");
+            sb.AppendLine("Half Life");
+            sb.AppendLine("Morrowing");
+            sb.AppendLine("Deus Ex " + "2");
+            sb.AppendLine("System Shock");
+            Console.WriteLine(sb.ToString());
+
+            sb.Replace("2", "Infinity War");
+            Console.WriteLine(sb.ToString());
+            Console.WriteLine("sb possui {0} caracteres.", sb.Length);
         }
     }
 }
