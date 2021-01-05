@@ -5,6 +5,7 @@
 
 using System;
 using System.Text;
+using System.Linq;
 
 namespace Chapter3
 {
@@ -81,6 +82,13 @@ namespace Chapter3
 
             NarrowingAttempt();
             ProccessBytes();
+            
+
+            //
+            // Declaração implícita de variáveis utilizando a palavra-chave var
+            DeclareImplicitVars();
+            DeclareImplicitNumerics();
+            LinqQueryOverInts();
 
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
@@ -557,6 +565,65 @@ namespace Chapter3
             Console.WriteLine("Soma: {0}", sum);
         }
 
-        // 
+        //
+        // Entendendo a tipagem implicita de dados.
+        //
+
+        private static void DeclareImplicitVars()
+        {
+            Console.WriteLine("\n\nMétodo DeclareImplicitVras():");
+
+            // Variáveis locais tipadas implícitamente são delcaradas como segue abaixo.
+            var myInt = 0;
+            var myBool = true;
+            var myString = "Marchando...";
+
+            Console.WriteLine("myInt é do tipo: {0}", myInt.GetType().Name);
+            Console.WriteLine("myBool é do tipo: {0}", myBool.GetType().Name);
+            Console.WriteLine("myString é do tipo: {0}", myString.GetType().Name);
+        }
+
+        // Declarando númericos implícitamente.
+        private static void DeclareImplicitNumerics()
+        {
+            Console.WriteLine("\n\nMétodo DeclareImplicitNumerics():");
+
+            var myUint = 0u;
+            var myInt = 0;
+            var myLong = 0L;
+            var myDouble = 0.5;
+            var myFloat = 0.5F;
+            var myDecimal = 0.5M;
+
+            // Informando os tipos subjacentes de cada variável!
+            Console.WriteLine("myUInt: {0}", myUint.GetType().Name);
+            Console.WriteLine("myInt: {0}", myInt.GetType().Name);
+            Console.WriteLine("myLong: {0}", myLong.GetType().Name);
+            Console.WriteLine("myDouble: {0}", myDouble.GetType().Name);
+            Console.WriteLine("myFloat: {0}", myFloat.GetType().Name);
+            Console.WriteLine("myDecimal: {0}", myDecimal.GetType().Name);
+        }
+
+        // Amostra de uso necessário de var, já que é difícil saber qual será o tipo retornado.
+        private static void LinqQueryOverInts()
+        {
+            Console.WriteLine("\n\nMétodo LinqQueryOverInts()");
+            
+            int[] numbers = { 10, 20, 30, 40, 1, 2, 3, 8 };
+
+            var subset = from i in numbers where i < 10 select i;
+
+            Console.Write("Valores do sub conjunto: ");
+            foreach (var i in subset)
+            {
+                Console.Write(" {0}" + i);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Tipo de subset: {0}", subset.GetType().Name);
+            Console.WriteLine("subset está definido em: {0}", subset.GetType().Namespace);
+        }
+
+        //
     }
 }
