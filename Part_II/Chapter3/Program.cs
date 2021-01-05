@@ -90,6 +90,13 @@ namespace Chapter3
             DeclareImplicitNumerics();
             LinqQueryOverInts();
 
+            //
+            // Tópico sobre loops do C#.
+            ForLoopExample();
+            ForEachLoopExample();
+            WhileLoopExample();
+            DoWhileLoopExample();
+
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
 
@@ -622,6 +629,69 @@ namespace Chapter3
 
             Console.WriteLine("Tipo de subset: {0}", subset.GetType().Name);
             Console.WriteLine("subset está definido em: {0}", subset.GetType().Namespace);
+        }
+
+        //
+        // Tópico sobre laços de repetição, em inglês loop.
+
+        // Primeiro loop, for.
+        private static void ForLoopExample()
+        {
+            Console.WriteLine("\n\nMétodo ForLoopExample():");
+            
+            // A variável i somente exist dentro do escopo do for.
+            for(int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("O número atual é: {0}", i);
+            }
+
+            // "i" não é acessível aqui!
+        }
+
+        // Itera um array utilizando um foreach
+        private static void ForEachLoopExample()
+        {
+            Console.WriteLine("\n\nMétodo ForEaxhLoopExample():");
+
+            // Foreach funciona apenas de forma linear!.
+            string[] carTypes = { "Ford", "BMW", "Yugo", "Honda" };
+            foreach (string car in carTypes)
+            {
+                Console.WriteLine(car);
+            }
+        }
+
+        // Método para apresentar o uso de do/while loop
+        private static void WhileLoopExample()
+        {
+            Console.WriteLine("\n\nMétodo WhileLoopExample():");
+            
+            // O loop é executado até o usuário informe yes
+            string userIsDone = "";
+
+            while(userIsDone.ToLower() != "yes")
+            {
+                Console.WriteLine("Dentro do loop...");
+                Console.Write("Você está pronto? [yes] ou [no]:");
+                userIsDone = Console.ReadLine();
+            }
+        }
+
+        // Método para apresentar o uso do loop do/while.
+        private static void DoWhileLoopExample()
+        {
+            Console.WriteLine("\n\nMétodo DoWhileLoopExample():");
+
+            // Ao contrário do while, o do/while garante que o bloco de código
+            // seja executado ao menos 1 vez!
+            string userIsDone = "";
+
+            do
+            {
+                Console.WriteLine("Dentro do loop...");
+                Console.Write("Você está pronto? [yes] ou [no]:");
+                userIsDone = Console.ReadLine();
+            } while (userIsDone.ToLower() != "yes");
         }
 
         //
