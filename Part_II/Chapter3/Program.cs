@@ -65,6 +65,23 @@ namespace Chapter3
             StringsAreImmutable();
             FunWithStringBuilder();
 
+            //
+            // "Estreitamento" e "alargamento" de tipos de dados, que PODE, mas não necessariamente,
+            // ocasionar perda de dados.
+            
+            // Abaixo, exemplo de conversão de "alargamento" e "estreitamento" de tipos sem perda de dados.
+            short n1 = 9, n2 = 10;
+            short answer = (short)Add(n1, n2);
+            Console.WriteLine("Alargamento e estreitamento sem perda de dados: {0}", answer);
+
+            // Abaixo, exemplo de conversão de "alargamento" e "estreitamento" de tipos com perda de dados.
+            short n3 = 30000, n4 = 30000;
+            short answer2 = (short)Add(n3, n4);
+            Console.WriteLine("Alargamento e estreitamento com perda de dados: {0}", answer2);
+
+            NarrowingAttempt();
+            ProccessBytes();
+
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
 
@@ -495,5 +512,51 @@ namespace Chapter3
             Console.WriteLine(sb.ToString());
             Console.WriteLine("sb possui {0} caracteres.", sb.Length);
         }
+
+        //
+        // Tópico sobre "estreitamento" e "ampliação" durante a conversão de tipos.
+        //
+
+        // Primeiro método de exemplo.
+        // Este método permite que valores inteiros de tipos "inferiores", ex. Byte, Short, sejam fornecidos
+        // sem qualquer perda de dados, desde que o valor esteja dentro da faixa de valores dos tipos
+        // inferiores.
+        private static int Add(int x, int y)
+        {
+            return x + y;
+        }
+
+        private static void NarrowingAttempt()
+        {
+            byte myByte = 0;
+            int myInt = 200;
+            
+            // Converte explicitamente um inteiro para um byte, "estreitamente de tipo", sem perda de
+            // dados, já que o número 200 está dentro da faixa do tipo inteiro e do tipo byte.
+            myByte = (byte)myInt;
+            Console.WriteLine("\n\nMétodo NarrowingAttempt():");
+            Console.WriteLine("Valor de myByte: {0}", myByte);
+        }
+
+        // Usando a palavra checked para detectar a perda de dados.
+        private static void ProccessBytes()
+        {
+            byte b1 = 100;
+            byte b2 = 200;
+            byte sum = 0;
+            
+            try
+            {
+                sum = checked((byte)Add(b1, b2));
+            }
+            catch (OverflowException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine("\n\nMétodo ProccessBytes():");
+            Console.WriteLine("Soma: {0}", sum);
+        }
+
+        // 
     }
 }
