@@ -97,6 +97,18 @@ namespace Chapter3
             WhileLoopExample();
             DoWhileLoopExample();
 
+            // Tópico sobre Estruturas de deicisão e operadores relacionais e de igualdade.
+            IfElsePatternMatching();
+            ExecuteEfElseUsingConditionalOperator();
+            ConditionalRefExample();
+
+            // Tópico sobre a estrutura switch e sua melhorias nas versões 7 e 7.2 do C#
+            SwitchExample();
+            SwitchOnStringsExample();
+            SwitchOnEnumExample();
+            ExecutePatternMatchingSwitch();
+            ExecutePatternMatchingSwitchWithWhen();
+
             // O console espera até uma tecla qualquer seja pressiona.
             Console.ReadLine();
 
@@ -694,6 +706,277 @@ namespace Chapter3
             } while (userIsDone.ToLower() != "yes");
         }
 
+        // ================================================================================================================================
         //
+        // Tópico:
+        // Construções de decisões e operadores relacionais e igualdade!
+        //
+        // ================================================================================================================================
+        
+        // Método para apresentar o if/else utilizando o "pattern matching", introduzido no C# 7.
+        private static void IfElsePatternMatching()
+        {
+            Console.WriteLine("\n\nMétodo IfElsePatternMatching():");
+
+            object testItem1 = 123;
+            object testItem2 = "Hello";
+
+            if (testItem1 is string myStringValue1)
+            {
+                Console.WriteLine($"{myStringValue1} é uma strings.");
+            }
+
+            if (testItem1 is int myIntValue1)
+            {
+                Console.WriteLine($"{myIntValue1} é um int");
+            }
+
+            if (testItem2 is string myStringValue2)
+            {
+                Console.WriteLine($"{myStringValue2} é uma strings.");
+            }
+
+            if (testItem2 is int myIntValue2)
+            {
+                Console.WriteLine($"{myIntValue2} é um int");
+            }
+        }
+
+        // Método para apresentar o operador condicional introduzido no C# 7.2
+        private static void ExecuteEfElseUsingConditionalOperator()
+        {
+            Console.WriteLine("\n\nMétodo ExecuteEfElseUsingConditionalOperator()");
+
+            // O operador ?: também conhecido como operador ternário serve para executar if/else simples, onde
+            // apenas temos duas condições, ou true ou false;
+            // Quando true, executa o código após o "?", quando false executa o código após o ":".
+            string stringData = "Meu dado textual";
+            Console.WriteLine(stringData.Length > 0 ? "O comprimento do texto é maior que 0" : "O comprimento do texto é menor que 0");
+        }
+
+        // Funcionalidade adicionada na versão 7.2 do C#.
+        private static void ConditionalRefExample()
+        {
+            Console.WriteLine("\n\nMétodo ConditionalRefExample()");
+
+            // A partir da versão 7.2 do C#, o operador ternário ?: pode retornar uma referência ao resultado
+            // da condição.
+            var smallArray = new int[] { 1, 2, 3, 4, 5 };
+            var largeArray = new int[] { 10, 20, 30, 40, 50 };
+
+            int index = 7;
+            ref int refValue = ref ((index < 5) ? ref smallArray[index] : ref largeArray[index - 5]);
+            refValue = 0;
+
+            index = 2;
+            ((index < 5) ? ref smallArray[index] : ref largeArray[index - 5]) = 100;
+
+            Console.WriteLine(string.Join(" ", smallArray));
+            Console.WriteLine(string.Join(" ", largeArray));
+        }
+
+        // Uso básico da estrutura switch.
+        private static void SwitchExample()
+        {
+            Console.WriteLine("\n\nMétodo SwitchExample():");
+
+            // Utilização do switch para escolher um fluxo de execução.
+            Console.WriteLine("1 [C#] - 2 [VB]");
+            Console.WriteLine("Por favor, selecione sua linguagem preferida!");
+
+            string langChoice = Console.ReadLine();
+            int n = int.Parse(langChoice);
+
+            switch(n)
+            {
+                case 1:
+                    Console.WriteLine("Boa escolha, C# é uma linguagem muito boa!");
+                    break;
+                case 2:
+                    Console.WriteLine("VB: POO, Multithreading, e muito mais");
+                    break;
+                default:
+                    Console.WriteLine("Bem... boa sorte com isso!");
+                    break;
+            }
+        }
+
+        // Avaliar strings, além dos números.
+        private static void SwitchOnStringsExample()
+        {
+            Console.WriteLine("\n\nMétodo SwitchExample():");
+
+            // Utilização do switch para escolher um fluxo de execução.
+            Console.WriteLine("1 [C#] - 2 [VB]");
+            Console.WriteLine("Por favor, selecione sua linguagem preferida!");
+
+            string langChoice = Console.ReadLine();
+
+            switch(langChoice.ToUpper())
+            {
+                case "C#":
+                    Console.WriteLine("Boa escolha, C# é uma linguagem muito boa!");
+                    break;
+                case "VB":
+                    Console.WriteLine("VB: POO, Multithreading, e muito mais");
+                    break;
+                default:
+                    Console.WriteLine("Bem... boa sorte com isso!");
+                    break;
+            }
+        }
+
+        // Executando um switch em enumeração (enum)
+        private static void SwitchOnEnumExample()
+        {
+            Console.WriteLine("\n\nMétodo SwitchOnEnumExample():");
+
+            // Utilização do switch para escolher um fluxo de execução.
+            Console.Write("Por favor, selecione seu dia favorito ");
+            DayOfWeek favDay;
+
+            try
+            {
+                favDay = (DayOfWeek) Enum.Parse(typeof(DayOfWeek), Console.ReadLine());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Dado não válido!");
+                return;
+            }
+
+            switch(favDay)
+            {
+                case DayOfWeek.Sunday:
+                    Console.WriteLine("Football!");
+                    break;
+                case DayOfWeek.Monday:
+                    Console.WriteLine("Outro dia, outro dinheiro");
+                    break;
+                case DayOfWeek.Tuesday:
+                    Console.WriteLine("Ao menos não é segunda feira");
+                    break;
+                case DayOfWeek.Wednesday:
+                    Console.WriteLine("Dia legal");
+                    break;
+                case DayOfWeek.Thursday:
+                    Console.WriteLine("Quase sexta...");
+                    break;
+                case DayOfWeek.Friday:
+                    Console.WriteLine("Sextou!!!");
+                    break;
+                case DayOfWeek.Saturday:
+                    Console.WriteLine("Ótimo dia!");
+                    break;
+                // default:
+                //     Console.WriteLine("Bem... boa sorte com isso!");
+                //     break;
+            }
+        }
+
+        // Recurso adicionado ao switch na versão 7 do C#, Pattern Macthing baseado no tipo
+        // da variável sendo verificada.
+        private static void ExecutePatternMatchingSwitch()
+        {
+            Console.WriteLine("\n\nMétodo ExecutePatternMatchingSwitch()");
+
+            //
+            Console.WriteLine("1 [Inteiro 5] - 2 [String (\"Ola\")] - 3 [Decimal (2.5)]");
+            Console.Write("Por favor, escolha uma opção: ");
+            string userChoice = Console.ReadLine();
+            object choice;
+
+            switch (userChoice)
+            {
+                case "1":
+                    choice = 5;
+                    break;
+                case "2":
+                    choice = "Olá";
+                    break;
+                case "3":
+                    choice = 2.5;
+                    break;
+                default:
+                    choice = 5;
+                    break;
+            }
+
+            // Novo padrão de busca - pattern matching C# 7.
+            switch (choice)
+            {
+                case int i:
+                    Console.WriteLine("Sua escolha é um inteiro.");
+                    break;
+                case string s:
+                    Console.WriteLine("Sua escolha é uma string");
+                    break;
+                case decimal d:
+                    Console.WriteLine("Sua escolha é um decimal");
+                    break;
+                default:
+                    Console.WriteLine("Sua escolha é qualquer coisa");
+                    break;
+            }
+        }
+
+        // Agora utilizando a claúsula "when".
+        private static void ExecutePatternMatchingSwitchWithWhen()
+        {
+            Console.WriteLine("\n\nMétodo ExecutePatternMatchingSwitchWithWhen()");
+
+            //
+            Console.WriteLine("1 [C#] - 2 [VB]");
+            Console.Write("Por favor, escolha uma opção: ");
+            object userChoice = Console.ReadLine();
+            var choice = int.TryParse(userChoice.ToString(), out int c) ? c : userChoice;
+
+            switch (choice)
+            {
+                case int i when i == 2:
+                case string s when s.Equals("VB", StringComparison.OrdinalIgnoreCase):
+                    Console.WriteLine("VB, POO e multithreading, legal!");
+                    break;
+                case int i when i == 1:
+                case string s when s.Equals("C#", StringComparison.OrdinalIgnoreCase):
+                    Console.WriteLine("Ótima escolha, C# é uma linguagem legal");
+                    break;
+                default:
+                    Console.WriteLine("Boa sorte com sua escolha");
+                    break;
+            }
+        }
+
+        // Na versão 8 do C# é possível utilizar expressões lambda (=>) e caracteres descatáveis (_).
+        private static string FromRainbow(string colorBand)
+        {
+            return colorBand switch
+            {
+                "Red" => "#FF0000",
+                "Orange" => "#FF7F00",
+                "Yellow" => "#FFFF00",
+                "Green" => "#00FF00",
+                "Blue" => "#0000FF",
+                "Indigo" => "#4B0082",
+                "Violet" => "#9400D3",
+                _ => "#FFFFFF",
+            };
+        }
+
+        // Na versão 8 do C# é possível utilizar tuplas.
+        private static string RockPaperScissors(string first, string second)
+        {
+            // Os dois valores são avaliados ao mesmo tempo e o switch tenta encontra um padrão correspondente
+            return (first, second) switch
+            {
+                ("pedra", "papel") => "Papel vence",
+                ("pedra", "tesoura") => "Pedra vence",
+                ("papel", "pedra") => "Papel vence",
+                ("papel", "tesoura") => "Tesoura vence",
+                ("tesoura", "pedra") => "Pedra vence",
+                ("tesoura", "papel") => "Tesoura vence",
+                (_, _) => "Empate",
+            };
+        }
     }
 }
