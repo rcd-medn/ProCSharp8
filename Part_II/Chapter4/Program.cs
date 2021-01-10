@@ -30,6 +30,16 @@ namespace Chapter4
             PassAndReceiveArrays();
             SystemArrayFuncionality();
 
+            // ============================================================================================================================
+            // Tópico - Methods
+            // Não ocorrerá chamadas aos métodos criados para para o tópico afim já que os exemplos apresentados
+            // servem para apresentar a estrutura dos métodos e alguns conceitos adicionados na versão 7 & e 8 do C#.
+            // ============================================================================================================================
+
+            // ============================================================================================================================
+            // Tópico - Method Parameters.
+            // ============================================================================================================================
+
             Console.WriteLine("\n");
         }
 
@@ -246,6 +256,56 @@ namespace Chapter4
                 Console.Write(gothicBands[i] + ", ");
             }
         }
+        #endregion
+
+        #region Tópico: Methods
+        // ================================================================================================================================
+        // Método de exemplo para apresentar a técnica de "corpo de expressão" (expression-bodied) para métodos.
+        // O método Add pode ser escrito da maneira tradicional, o resultado seria o mesmo.
+        //
+        // static int Add(int x, int y)
+        // {
+        //      return x + y;
+        // }
+        // ================================================================================================================================
+        static int Add(int x, int y) => x + y;
+
+        // ================================================================================================================================
+        // Método para apresentar a declaração de funções locais (local functions), métodos dentro de outros métodos.
+        // Conceito adicional no C# 7.
+        // ================================================================================================================================
+        static int AddWrapper(int x, int y)
+        {
+            // Chama o método interno (local function).
+            return Add();
+
+            // Add() é o método interno (local function).
+            int Add()
+            {
+                return x + y;
+            }
+        }
+
+        // ================================================================================================================================
+        // Método apresenta o uso métodos locais estáticos, adicionado no C# 8.
+        // ================================================================================================================================
+        static int AddWrapperWithStatic(int x, int y)
+        {
+            // Com essa nova técnica o método Add não poderá alterar os valores do parâmetros x e y
+            // algo que pode ocorrer no exemplo anterior.
+            return Add(x, y);
+
+            static int Add(int x, int y)
+            {
+                return x + y;
+            }
+        }
+        #endregion
+
+        #region Tópico: Method Parameters
+        // ================================================================================================================================
+        // Método apresenta o uso 
+        // ================================================================================================================================
         #endregion
     }
 }
