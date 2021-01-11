@@ -78,7 +78,18 @@ namespace Chapter4
             double[] data = { 4.0, 3.2, 5.7 };
             average = CalculateAverage(data);
             Console.WriteLine("Média dos dados: {0}", average.ToString());
-            
+
+            EnterLogData("Primeiro teste", "Parâmetro opcional fornecido!");
+            EnterLogData("Segundo teste");
+
+            DisplayFancyMessage(message: "Primeiro, o texto!", textColor: ConsoleColor.DarkRed, backgroundColor: ConsoleColor.White);
+            DisplayFancyMessage(backgroundColor: ConsoleColor.Green, message: "Segundo, o texto!", textColor: ConsoleColor.DarkBlue);
+
+            Console.WriteLine("\n\n\n\n");
+            Console.WriteLine("int AddSum(): {0}", AddSum(10, 20));
+            Console.WriteLine("double AddSum(): {0}", AddSum(5.5, 4.3));
+            Console.WriteLine("long AddSum(): {0}", AddSum(900_000_000_000L, 900_000_000_000L));
+
             Console.WriteLine("\n");
         }
 
@@ -431,6 +442,60 @@ namespace Chapter4
             }
 
             return (sum / values.Length);
+        }
+
+        // ================================================================================================================================
+        // Método que faz uso de parâmetros opcionais. Neste exemplo o parâmetro opcional é segundo.
+        // Caso o código que invoca o método EnterLogData() não forneça um valor para o segundo parâmetro, o valor
+        // "Programador" será utilizado como padrão.
+        // O valor para um parâmetro opcional, precisa ser "conhecido" no momento da compilação e não na execução.
+        // Todo parâmetro opcional precisa ser o último na lista de parâmetros.
+        // ================================================================================================================================
+        static void EnterLogData(string message, string owner = "Programador")
+        {
+            Console.WriteLine("\n\nMétodo EnterLogData():");
+            
+            Console.Beep();
+            Console.WriteLine("Erro: {0}", message);
+            Console.WriteLine("Emissor do erro: {0}", owner);
+        }
+
+        // ================================================================================================================================
+        // Método utilizando o conceito de argumentos nomeados.
+        // Quando este método for chamado, os parâmetros podem ser acionados pelo nome e não, necessariamente pela
+        // sua posição na assinatura do método.
+        // ================================================================================================================================
+        static void DisplayFancyMessage(ConsoleColor textColor, ConsoleColor backgroundColor, string message)
+        {
+            Console.WriteLine("\n\nMétodo DisplayFancyMessage():");
+
+            ConsoleColor oldTextColor = Console.ForegroundColor;
+            ConsoleColor oldbackgroundColor = Console.BackgroundColor;
+
+            Console.ForegroundColor = textColor;
+            Console.BackgroundColor = backgroundColor;
+            Console.WriteLine(message);
+
+            Console.ForegroundColor = oldTextColor;
+            Console.BackgroundColor = oldbackgroundColor;
+        }
+
+        // ================================================================================================================================
+        // Método utilizando o conceito de sobrecarga de métodos.
+        // ================================================================================================================================
+        static int AddSum(int x, int y)
+        {
+            return x + y;
+        }
+
+        static double AddSum(double x, double y)
+        {
+            return x + y;
+        }
+
+        static long AddSum(long x, long y)
+        {
+            return x + y;
         }
         #endregion
     }
