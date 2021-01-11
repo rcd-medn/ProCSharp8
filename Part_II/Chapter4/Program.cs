@@ -70,6 +70,14 @@ namespace Chapter4
             Console.WriteLine("Antes da chamada: str1 = {0} - str2 = {1}", str1, str2);
             SwapStrings(ref str1, ref str2);
             Console.WriteLine("Após a chamada: str1 = {0} - str2 = {1}", str1, str2);
+
+            double average ;
+            average = CalculateAverage(4.0, 3.2, 5.7, 64.22, 87.2);
+            Console.WriteLine("Média dos dados: {0}", average.ToString());
+
+            double[] data = { 4.0, 3.2, 5.7 };
+            average = CalculateAverage(data);
+            Console.WriteLine("Média dos dados: {0}", average.ToString());
             
             Console.WriteLine("\n");
         }
@@ -378,6 +386,7 @@ namespace Chapter4
             b = "Aproveita seu dia";
             c = true;
         }
+        
         // ================================================================================================================================
         // Método para apresentar a passagem de parâmetro "por referência", ou seja, o método trabalha o "endereço"
         // na memória do dado original, assim o dado original pode ser alterado.
@@ -387,6 +396,41 @@ namespace Chapter4
             string tempStr = s1;
             s1 = s2;
             s2 = tempStr;
+        }
+
+        // ================================================================================================================================
+        // Método para apresentar a passagem de parâmetro utilizando o modificador "in". Esse modificador impede que o
+        // o método que está sendo chamado modifique os valores.
+        // Obs.: Tanto os tipos "por valor" quanto "por referência", são passados por referência quando o modificador "in"
+        // é utilizado, porém, os valores não podem ser alterados.
+        // ================================================================================================================================
+        static int AddReadOnly(in int x, in int y)
+        {
+            // x = 10000; => Não funciona. O modificaodr "in" impede a alteração do valor, mesmo que o parâmetro seja por referência!
+            int ans = x + y;
+            return ans;
+        }
+
+        // ================================================================================================================================
+        // Método que faz uso do modificardor "params". Com isso quem está chamado o método poderá passar uma lista de
+        // parâmetros, sendo que cada item será delimitado por uma vírgula.
+        // ================================================================================================================================
+        static double CalculateAverage(params double[] values)
+        {
+            Console.WriteLine("\n\nMétodo CalculateAverage():");
+
+            double sum = 0;
+            if (values.Length == 0)
+            {
+                return sum;
+            }
+
+            for(int i = 0; i < values.Length; i++)
+            {
+                sum += values[i];
+            }
+
+            return (sum / values.Length);
         }
         #endregion
     }
