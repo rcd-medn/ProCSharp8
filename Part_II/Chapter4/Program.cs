@@ -39,7 +39,38 @@ namespace Chapter4
             // ============================================================================================================================
             // Tópico - Method Parameters.
             // ============================================================================================================================
+            //
+            // Passando 2 variáveis por valor ao método AddByValue();
+            Console.WriteLine("\n\nMétodo AddByValue()");
+            int x = 9, y = 10;
+            Console.WriteLine("Antes de chamar: X: {0} - Y: {1}", x, y);
+            Console.WriteLine("Resposta: {0}", AddByValue(x, y));
+            Console.WriteLine("Depois de chamar: X: {0} - Y: {1}", x, y);
 
+            Console.WriteLine("\n\nMétodo AddByOutModifier():");
+            int variavel;
+            AddByOutModifier(10, 20, out variavel);
+            Console.WriteLine($"Valor de \"variavel\": {variavel}");
+
+            Console.WriteLine("\n\nMétodo FillTheseValues():");
+            FillTheseValues(out int i, out string s, out bool b);
+            Console.WriteLine("Valor de i: {0}", i.ToString());
+            Console.WriteLine("Valor de s: {0}", s.ToString());
+            Console.WriteLine("Valor de b: {0}", b.ToString());
+            
+            // Utilizando um placeholder "descartável", ou seja, os caracteres _ (underline) no chamada do método
+            // servem apenas para preencher a chamada do método, mas não armazenam nenhum valor.
+            // Neste exemplo, recuperamos somente o valor do primeiro parâmetro.
+            // Disponível a partir da versão 7 do C#.
+            FillTheseValues(out int a, out _, out _);
+
+            // Chamando um método que recebe duas variáveis do tipo string por referência (ref)
+            string str1 = "Flip";
+            string str2 = "Flop";
+            Console.WriteLine("Antes da chamada: str1 = {0} - str2 = {1}", str1, str2);
+            SwapStrings(ref str1, ref str2);
+            Console.WriteLine("Após a chamada: str1 = {0} - str2 = {1}", str1, str2);
+            
             Console.WriteLine("\n");
         }
 
@@ -304,8 +335,59 @@ namespace Chapter4
 
         #region Tópico: Method Parameters
         // ================================================================================================================================
-        // Método apresenta o uso 
+        // Método para apresentar a passagem de parâmetro "por valor", ou seja, se faz uma cópia do dado original
+        // e o método trabalha com a cópia do dado.
         // ================================================================================================================================
+        static int AddByValue(int x, int y)
+        {
+            int ans = x + y;
+            // O código chamador do método não enxerga essas modificações
+            // já que o método recebeu apenas uma cópia dos dados originais
+            // através dos parâmetros.
+            x = 10000;
+            y = 88888;
+
+            return ans;
+        }
+
+        // ================================================================================================================================
+        // Método para apresentar a passagem de parâmetro "por referência", ou seja, o método trabalha o "endereço"
+        // na memória do dado original, assim o dado original pode ser alterado.
+        // ================================================================================================================================
+        
+        // ================================================================================================================================
+        // Método para apresentar o modificador de parâmetro "out". Com ele o método é obrigado a retornar um valor
+        // no parâmetro marcado com o modificador "out".
+        //
+        // Ao chamar o método AddByOutModifier(), é necessário informar a variável que receberá o valor como "saída"
+        // e utilizar junto o modificador "out". Não é necessário atribuir um valor à variável local.
+        //
+        // int variavel;
+        // Add(10, 20, out variavel)
+        //
+        // Agora "variavel" tem o valor de "saída" devolvido pelo método e pode ser utlizada sem problemas.
+        // ================================================================================================================================
+        static void AddByOutModifier(int x, int y, out int ans)
+        {
+            ans = x + y;
+        }
+
+        static void FillTheseValues(out int a, out string b, out bool c)
+        {
+            a = 10;
+            b = "Aproveita seu dia";
+            c = true;
+        }
+        // ================================================================================================================================
+        // Método para apresentar a passagem de parâmetro "por referência", ou seja, o método trabalha o "endereço"
+        // na memória do dado original, assim o dado original pode ser alterado.
+        // ================================================================================================================================
+        static void SwapStrings(ref string s1, ref string s2)
+        {
+            string tempStr = s1;
+            s1 = s2;
+            s2 = tempStr;
+        }
         #endregion
     }
 }
