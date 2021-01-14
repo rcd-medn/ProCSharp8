@@ -90,6 +90,20 @@ namespace Chapter4
             Console.WriteLine("double AddSum(): {0}", AddSum(5.5, 4.3));
             Console.WriteLine("long AddSum(): {0}", AddSum(900_000_000_000L, 900_000_000_000L));
 
+            // ============================================================================================================================
+            // Tópico - Understanding the enum Type.
+            // ============================================================================================================================
+            EmpTypeEnum emp = EmpTypeEnum.Manager;
+            AskForBonus(emp);
+
+            Console.WriteLine("EmpTypeEnum é do tipo: {0}", Enum.GetUnderlyingType(emp.GetType()));
+            Console.WriteLine("EmpTypeEnum é do tipo: {0}", Enum.GetUnderlyingType(typeof(EmpTypeEnum)));
+
+            Console.WriteLine("emp é: {0}", emp.ToString());
+            Console.WriteLine("{0} = {1}", emp.ToString(), (byte)emp);
+
+            EvaluatedEnum(emp);
+
             Console.WriteLine("\n");
         }
 
@@ -498,5 +512,60 @@ namespace Chapter4
             return x + y;
         }
         #endregion
+    
+        #region Tópico: Understanding the enum Type
+        // ================================================================================================================================
+        //  Método de exemplo para usar enumerações.
+        // ================================================================================================================================
+        static void AskForBonus(EmpTypeEnum e)
+        {
+            Console.WriteLine("\n\nMétodo AskForBonus():");
+            
+            switch(e)
+            {
+                case EmpTypeEnum.Manager:
+                    Console.WriteLine("Que tal opções em ações?");
+                    break;
+                case EmpTypeEnum.Grunt:
+                    Console.WriteLine("Você só pode estar brincando...");
+                    break;
+                case EmpTypeEnum.Contractor:
+                    Console.WriteLine("Você já tem dinheiro o bastante ...");
+                    break;
+                case EmpTypeEnum.President:
+                    Console.WriteLine("Muito bom senhor!!!");
+                    break;
+            }
+        }
+
+        static void EvaluatedEnum(System.Enum e)
+        {
+            Console.WriteLine("\n\nMétodo EvaluatedEnum():");
+
+            Console.WriteLine("Informações sobre: {0}", e.GetType().Name);
+            Console.WriteLine("Tipo de dado subjacente: {0}", Enum.GetUnderlyingType(e.GetType()));
+            
+            Array enumData = Enum.GetValues(e.GetType());
+            Console.WriteLine("Esta enumeração possui {0} elementos", enumData.Length);
+            for (int i = 0; i < enumData.Length; i++)
+            {
+                Console.WriteLine("Nome: {0}, Valor: {0:D}", enumData.GetValue(i));
+            }
+        }
+        #endregion
+    }
+
+    // Por padrão, o primeiro nome recebe o número zero e o restante dos elementos seguem a progressão n+1.
+    // Mas nada impede de indicar um número inicial, por exmeplo, Manager = 102, a partir daí, o próximo
+    // nome seria Grunt = 103, ... 104, ... 105.
+    // Os nome não precisão seguir uma ordem númerica sequencial, poderiam ser declarados assim.
+    // Manager = 10, Grunt = 1, Contractor = 20, President = 100. Sem problema.
+    enum EmpTypeEnum : byte // Qual outro tipo que seja inteiro
+    {
+        Manager,        // = 0
+        Grunt,          // = 1
+        Contractor,     // = 2
+        President       // = 3
+        //VicePresidente   = 999 => Errado. Está fora do limite do tipo byte
     }
 }
