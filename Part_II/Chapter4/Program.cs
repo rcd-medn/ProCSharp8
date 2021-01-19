@@ -109,6 +109,24 @@ namespace Chapter4
             // ============================================================================================================================
             FunWithStructures();
 
+            // ============================================================================================================================
+            // Tópico - Understanding Value Type and Reference Type
+            // ============================================================================================================================
+            ValueTypeAssignment();
+            ReferenceTypeAssignment();
+            ValueTypeContainningRefType();
+
+            Console.WriteLine("\n\nPassando um objeto Person por valor");
+            Person fulano = new Person("Fulano", 60);
+
+            Console.WriteLine("Antes da chamada por valor:");
+            fulano.Display();
+
+            SendAPersonByValue(fulano);
+
+            Console.WriteLine("Após passar o objeto Person por valor, Person é:");
+            fulano.Display();
+
             Console.WriteLine("\n");
         }
 
@@ -597,6 +615,78 @@ namespace Chapter4
             p3.Display();
         }
         #endregion
+
+        #region Tópico: Understanding Value Types and Reference Types
+        // ================================================================================================================================
+        // Método para exemplificar a cópia por valor
+        // ================================================================================================================================
+        static void ValueTypeAssignment()
+        {
+            Console.WriteLine("\n\nMétodo ValueTypeAssignment():");
+
+            Point p1 = new Point(10, 15);
+            Point p2 = p1;
+
+            // Diagnóstico!
+            p1.Display();
+            p2.Display();
+
+            // Altera p1 e imprime os valores novamente.
+            p1.X = 100;
+            Console.WriteLine("\np1.X foi alterado:\n");
+            p1.Display();
+            p2.Display();
+        }
+
+        static void ReferenceTypeAssignment()
+        {
+            Console.WriteLine("\n\nMétodo ReferenceTypeAssignment():");
+
+            PointRef p1 = new PointRef(15, 20);
+            PointRef p2 = p1;
+
+            p1.Display();
+            p2.Display();
+
+            p1.X = 150;
+            Console.WriteLine("\np1.X foi alterado:\n");
+            p1.Display();
+            p2.Display();
+        }
+
+        static void ValueTypeContainningRefType()
+        {
+            Console.WriteLine("\n\nMétodo ValueTypeContainningRefType():");
+
+            Rectangle r1 = new Rectangle("Primeiro retângulo", 10, 15, 20, 25);
+
+            Console.WriteLine("Atribui r1 a r2:");
+            Rectangle r2 = r1;
+
+            Console.WriteLine("Altera o valor de r2:");
+            r2.RectInfo.InfoString = "Este é o r2!";
+            r2.RectBottom = 4444;
+
+            r1.Display();
+            r2.Display();
+        }
+
+        // Recebe uma tipo referência por valor, já que não foi informado um modificador de parâmetro.
+        static void SendAPersonByValue(Person p)
+        {
+            // Altera a idade de "p"?
+            p.personAge = 99;
+
+            // Quem chama o método vera a alteração?
+            p = new Person("Nikki", 99);
+        }
+        #endregion
+
+        #region Tópico: 
+        #endregion
+
+        #region Tópico: 
+        #endregion
     }
 
     #region Enum
@@ -710,12 +800,86 @@ namespace Chapter4
     }
     #endregion
 
-    #region Tópico: 
-    #endregion
+    #region Nova classe para exemplificar o tipo por referência (Reference Type)
+    class PointRef
+    {
+        // Campos da estrutura.
+        public int X;
+        public int Y;
 
-    #region Tópico: 
-    #endregion
+        public PointRef(int xPos, int yPos)
+        {
+            X = xPos;
+            Y = yPos;
+        }
 
-    #region Tópico: 
+        public void Increment()
+        {
+            X++;
+            Y++;
+        }
+
+        public void Decrement()
+        {
+            X--;
+            Y--;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("X = {0}, Y = {1}", X, Y);
+        }
+    }
+
+    class ShapeInfo
+    {
+        public string InfoString;
+
+        public ShapeInfo(string info)
+        {
+            InfoString = info;
+        }
+    }
+
+    struct Rectangle
+    {
+        // Rectangle contem um tipo por referência (Reference Type)
+        public ShapeInfo RectInfo;
+
+        public int rectTop, rectLeft, RectBottom, RectRight;
+
+        public Rectangle(string info, int top, int left, int bottom, int right)
+        {
+            RectInfo = new ShapeInfo(info);
+
+            rectTop = top;
+            rectLeft = left;
+            RectBottom = bottom;
+            RectRight = right;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("String = {0}, Top = {1}, Left = {2}, Bottom = {3}, Right = {4}", RectInfo.InfoString, rectTop, rectLeft, RectBottom, RectRight);
+        }
+    }
+
+    class Person
+    {
+        public string personName;
+        public int personAge;
+
+        public Person() { }
+        public Person(string name, int age)
+        {
+            personName = name;
+            personAge = age;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("Nome: {0}, Idade: {1}", personName, personAge);
+        }
+    }
     #endregion
 }
