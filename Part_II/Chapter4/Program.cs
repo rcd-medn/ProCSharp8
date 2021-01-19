@@ -127,6 +127,15 @@ namespace Chapter4
             Console.WriteLine("Após passar o objeto Person por valor, Person é:");
             fulano.Display();
 
+            Console.WriteLine("\n\nPassando um objeto Person por refeerência");
+            Person mel = new Person("Mel", 23);
+            Console.WriteLine("Antes da chamada por referência, Person é:");
+            mel.Display();
+
+            SendAPersonByReference(ref mel);
+            Console.WriteLine("Após a chamada por referência, Person é:");
+            mel.Display();
+
             Console.WriteLine("\n");
         }
 
@@ -679,6 +688,15 @@ namespace Chapter4
 
             // Quem chama o método vera a alteração?
             p = new Person("Nikki", 99);
+        }
+
+        static void SendAPersonByReference(ref Person p)
+        {
+            // Altera alguns dados de "p"
+            p.personAge = 555;
+
+            // Agora "p" está apontando ao um novo objeto no heap
+            p = new Person("Nikki", 999);
         }
         #endregion
 
