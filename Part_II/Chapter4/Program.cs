@@ -104,6 +104,11 @@ namespace Chapter4
 
             EvaluatedEnum(emp);
 
+            // ============================================================================================================================
+            // Tópico - Understanding the Structures
+            // ============================================================================================================================
+            FunWithStructures();
+
             Console.WriteLine("\n");
         }
 
@@ -553,8 +558,48 @@ namespace Chapter4
             }
         }
         #endregion
+
+        #region Tópico: Understanding Structures
+        // ================================================================================================================================
+        // Tópico - Understanding the Structures
+        // ================================================================================================================================
+        static void FunWithStructures()
+        {
+            Console.WriteLine("\n\nMétodo FunWithStructures():");
+
+            // Manipulando structures.
+            Point myPont;
+            myPont.X = 349;
+            myPont.Y = 76;
+            myPont.Display();
+
+            myPont.Increment();
+            myPont.Display();
+
+            // Errado! O campo de dado myPoint.Y não recebeu um valor
+            // Point myPont;
+            // myPont.X = 349;
+            // myPont.Display();
+
+            // Funciona!
+            // Com o construtor padrão os valores são configurados para seu valor padrão
+            // X = 0; Y = 0
+            Point p1 = new Point();
+            p1.Display();
+
+            // Com o construtor personalizado, podemos fornecer valores durante a declaração
+            // da variável do tipo Point.
+            // X = 50, Y = 20
+            Point p2 = new Point(50, 20);
+            p2.Display();
+
+            PointWithReadOnly p3 = new PointWithReadOnly(15, 20, "Point w/RO");
+            p3.Display();
+        }
+        #endregion
     }
 
+    #region Enum
     // Por padrão, o primeiro nome recebe o número zero e o restante dos elementos seguem a progressão n+1.
     // Mas nada impede de indicar um número inicial, por exmeplo, Manager = 102, a partir daí, o próximo
     // nome seria Grunt = 103, ... 104, ... 105.
@@ -568,4 +613,109 @@ namespace Chapter4
         President       // = 3
         //VicePresidente   = 999 => Errado. Está fora do limite do tipo byte
     }
+    #endregion
+
+    #region Structure
+    struct Point
+    {
+        // Campos da estrutura.
+        public int X;
+        public int Y;
+
+        public Point(int xPos, int yPos)
+        {
+            X = xPos;
+            Y = yPos;
+        }
+
+        public void Increment()
+        {
+            X++;
+            Y++;
+        }
+
+        public void Decrement()
+        {
+            X--;
+            Y--;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("X = {0}, Y = {1}", X, Y);
+        }
+    }
+
+    // Strtucure de somente leitura.
+    // Os dados de X e Y não podem ser alterados.
+    readonly struct ReadOnlyPoint
+    {
+        public int X { get; }
+        public int Y { get; }
+
+        public ReadOnlyPoint(int xPos, int yPos)
+        {
+            X = xPos;
+            Y = yPos;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"X = {X}, Y = {Y}");
+        }
+    }
+
+    // Structure somente com 2 campos configurados para serem somente leitura.
+    struct PointWithReadOnly
+    {
+        public int X;
+        public readonly int Y;
+        public readonly string Name;
+
+        public PointWithReadOnly(int xPos, int yPos, string name)
+        {
+            X = xPos;
+            Y = yPos;
+            Name = name;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"X = {X}, Y = {Y}, Name = {Name}");
+        }
+    }
+
+    // Estrutura ref descartável (C# 8)
+    ref struct DisposableRefStruct
+    {
+        public int X;
+        public readonly int Y;
+
+        public DisposableRefStruct(int xPos, int yPos)
+        {
+            X = xPos;
+            Y = yPos;
+        }
+
+        public readonly void Display()
+        {
+            Console.WriteLine($"X = {X}, Y = {Y}");
+        }
+
+        public void Dispose()
+        {
+            // Libera os recursos utilizados aqui!
+            Console.WriteLine("Descartado!");
+        }
+    }
+    #endregion
+
+    #region Tópico: 
+    #endregion
+
+    #region Tópico: 
+    #endregion
+
+    #region Tópico: 
+    #endregion
 }
