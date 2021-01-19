@@ -700,7 +700,30 @@ namespace Chapter4
         }
         #endregion
 
-        #region Tópico: 
+        #region Tópico: Undertanding C# Nullable Types
+        // ================================================================================================================================
+        // Tópico sobre os tipo anuláveis da plataforma .NET Core.
+        // ================================================================================================================================
+
+        static void LocalNullableVariables()
+        {
+            // Define algumas variáveis anuláveis.
+            int? nullableInt = 10;
+            double? nullableDouble = 3.14;
+            bool? nullableBool = null;
+            char? nullableChar = 'a';
+            int?[] arrayOfNullableInts = new int?[10];
+        }
+
+        static void LocalNullableVariablesUsingNullable()
+        {
+            // Define alguns tipos anuláveis locais utilizando Nullable<T>
+            Nullable<int> nullableInt = 10;
+            Nullable<double> nullableDouble = 3.14;
+            Nullable<bool> nullableBool = null;
+            Nullable<char> nullableChar = 'a';
+            Nullable<int>[] arrayOfNullableInts = new Nullable<int>[10];
+        }
         #endregion
 
         #region Tópico: 
@@ -898,6 +921,14 @@ namespace Chapter4
         {
             Console.WriteLine("Nome: {0}, Idade: {1}", personName, personAge);
         }
+    }
+    #endregion
+
+    #region Nova classe para exemplificar os tipos por referência anuláveis (Nullable Reference Types)
+    public class TestClass
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
     #endregion
 }
