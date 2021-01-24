@@ -17,6 +17,25 @@ namespace SimpleClassExample
         public int currSpeed { get; set; }
 
         // ======================================================================================================================
+        // Construtor padrão e 2 construtores personalizados para o objeto Car.
+        // Um deles utiliza expressão de corpo (expression-bodied)
+        // ======================================================================================================================
+        public Car()
+        {
+            petName = "Construtor Padrão";
+            currSpeed = 10;
+        }
+
+        public Car(string pn)
+            => petName = pn;
+
+        public Car(string pn, int cs)
+        {
+            petName = pn;
+            currSpeed = cs;
+        }
+
+        // ======================================================================================================================
         // Métodos para modelar o comportamento/alterar estado do objeto.
         // Os métodos estão utilizando a sintaxe de expressão de corpo.
         // ======================================================================================================================

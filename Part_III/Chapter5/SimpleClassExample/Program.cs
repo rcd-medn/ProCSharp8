@@ -28,6 +28,21 @@ namespace SimpleClassExample
                 myCar.SpeedUp(5);
                 myCar.PrintState();
             }
+
+            Console.WriteLine("\n");
+            Car construtorPadrao = new Car();
+            construtorPadrao.PrintState();
+
+            Car medinaCar = new Car("Medina Car");
+            medinaCar.PrintState();
+
+            Car robertCar = new Car("Robert Car", 20);
+            robertCar.PrintState();
+
+            Motorcycle mc = new Motorcycle();
+            mc.PopAWheely();
+
+            Console.WriteLine("\n");
         }
     }
 }
