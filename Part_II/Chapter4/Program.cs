@@ -726,6 +726,10 @@ namespace Chapter4
         }
         #endregion
 
+        #region Tópico: Tuples (New/Updated 7.0)
+        
+        #endregion
+
         #region Tópico: 
         #endregion
     }
