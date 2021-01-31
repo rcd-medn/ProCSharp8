@@ -6,7 +6,7 @@
 
 namespace Employees
 {
-    public class Manager
+    public class Manager : Employee
     {
         public int StockOptions { get; set; }
 
@@ -15,5 +15,10 @@ namespace Employees
         {
             StockOptions = numbOfOpts;
         }
+
+        // public double GetBenefitCost()
+        // {
+        //     this.GetBenefitCost();
+        // }
     }
 }

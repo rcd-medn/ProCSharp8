@@ -16,6 +16,7 @@ namespace Employees
         private float _currPay;
         private int _empAge;
         private EmployeePayTypeEnum _payType;
+        protected BenefitPackage empBenefits = new BenefitPackage();
         #endregion
 
         // Encapsulando dados utilizando propriedades.
@@ -59,6 +60,12 @@ namespace Employees
             get => _payType;
             set => _payType = value;
         }
+        
+        public BenefitPackage Benefits
+        {
+            get { return empBenefits; }
+            set { empBenefits = value; }
+        }
         #endregion
 
         // Construtores dos objetos.
@@ -91,6 +98,11 @@ namespace Employees
             {
                 _empName = name;
             }
+        }
+
+        public double GetBenefitCost()
+        {
+            return empBenefits.ComputePayDeduction();
         }
         #endregion
 
