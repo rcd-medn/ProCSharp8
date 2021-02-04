@@ -6,7 +6,7 @@ using System;
 
 namespace Employees
 {
-    public class Employee
+    public abstract class Employee
     {
         // Campos de dados.
         // Não são propriedades!!!
@@ -108,7 +108,7 @@ namespace Employees
 
         // Métodos
         #region Métodos comuns
-        public void GiveBonus(float amount)
+        public virtual void GiveBonus(float amount)
         {
             Pay = this switch
             {
@@ -122,7 +122,7 @@ namespace Employees
             };
         }
         
-        public void DisplayStats()
+        public virtual void DisplayStats()
         {
             Console.WriteLine("Nome: {0}", _empName);
             Console.WriteLine("ID {0}", _empId);

@@ -2,7 +2,7 @@
 
 
 
-
+using System;
 
 namespace Employees
 {
@@ -14,6 +14,20 @@ namespace Employees
             : base(fullName, age, id, currPay, Employee.EmployeePayTypeEnum.Salaried)
         {
             StockOptions = numbOfOpts;
+        }
+
+        public override void GiveBonus(float amount)
+        {
+            base.GiveBonus(amount);
+
+            Random r = new Random();
+            StockOptions += r.Next(500);
+        }
+
+        public override void DisplayStats()
+        {
+            base.DisplayStats();
+            Console.WriteLine("Número de opções de ações: {0}", StockOptions);
         }
 
         // public double GetBenefitCost()
