@@ -25,5 +25,12 @@ namespace Employees
             // double cost = outro.GetBenefitCost();
             // Console.WriteLine("Benificios {0}", cost);
         }
+
+        static void CastingExamples()
+        {
+            // Um Manager "é um" Object
+            object fulano = new Manager("Fulano", 9, 3000, 40000, 5);
+            Employee moonUnit = new Manager("MoonUnit", 15, 2500, 20000, 9);
+        }
     }
 }
