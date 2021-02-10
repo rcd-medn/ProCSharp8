@@ -42,7 +42,14 @@ namespace SimpleException
                 {
                     CurrentSpeed = 0;
                     _carIsDead = true;
-                    throw new Exception($"{PetName} - Super aqueceu!");
+                    throw new Exception($"{PetName} - Super aqueceu!")
+                    {
+                        HelpLink = "https://www.carsrus.com",
+                        Data = {
+                            { "TimeStamp", $"O carro explodiu em {DateTime.Now}" },
+                            { "Cause", "Você tem o pé pesado!" }
+                        }
+                    };
                 }
                 Console.WriteLine("==> CurrentSpeed = {0}", CurrentSpeed);
             }
