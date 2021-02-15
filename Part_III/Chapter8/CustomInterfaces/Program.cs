@@ -38,6 +38,17 @@ namespace CustomInterfaces
             {
                 Console.WriteLine("Ooops! Não possui pontos!");
             }
+            Console.WriteLine("\n");
+
+            var sq = new Square("Caixa") { NumberOfSides = 4, SideLength = 4 } ;
+            sq.Draw();
+
+            // NÃO COMPILA!
+            // Console.WriteLine($"{sq.PetName} tem {sq.NumberOfSides} de tamanho {sq.SideLength} e um perimetro de {sq.Perimeter}");
+            Console.WriteLine(
+                $"{sq.PetName} tem {sq.NumberOfSides} de tamanho {sq.SideLength} e um perimetro de {((IRegularPointy)sq).Perimeter}"
+            );
+            Console.WriteLine("\n");
         }
     }
 }
