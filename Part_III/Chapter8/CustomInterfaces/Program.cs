@@ -58,12 +58,37 @@ namespace CustomInterfaces
                     DrawIn3D(s);
                 }
             }
+
+            IPointy firstPointyItem = FindFirstPointyShape(myShapes);
+            Console.WriteLine("O item tem {0} pontos", firstPointyItem?.Points);
+            Console.WriteLine("\n");
+
+            // Array com objetos que implementam a interface IPointy
+            IPointy[] myPointyObjects = { new Hexagon(), new Knife(), new Triangle(), new Fork(), new PitchFork() };
+            foreach (IPointy i in myPointyObjects)
+            {
+                Console.WriteLine("O objeto tem {0} pontos.", i.Points);
+            }
+            Console.WriteLine("\n");
         }
 
         static void DrawIn3D(IDraw3D itf3d)
         {
             Console.WriteLine("==> Desenhando um tipo compativel com IDraw3D");
             itf3d.Draw3D();
+        }
+
+        static IPointy FindFirstPointyShape(Shape[] shapes)
+        {
+            foreach (Shape s in shapes)
+            {
+                if (s is IPointy ip)
+                {
+                    return ip;
+                }
+            }
+
+            return null;
         }
     }
 }
