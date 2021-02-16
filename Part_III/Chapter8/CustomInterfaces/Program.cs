@@ -49,6 +49,21 @@ namespace CustomInterfaces
                 $"{sq.PetName} tem {sq.NumberOfSides} de tamanho {sq.SideLength} e um perimetro de {((IRegularPointy)sq).Perimeter}"
             );
             Console.WriteLine("\n");
+
+            Shape[] myShapes = { new Hexagon(), new Circle(), new Triangle("Joe"), new Circle("JoJo") };
+            for(int i = 0; i < myShapes.Length; i++)
+            {
+                if (myShapes[i] is IDraw3D s)
+                {
+                    DrawIn3D(s);
+                }
+            }
+        }
+
+        static void DrawIn3D(IDraw3D itf3d)
+        {
+            Console.WriteLine("==> Desenhando um tipo compativel com IDraw3D");
+            itf3d.Draw3D();
         }
     }
 }
