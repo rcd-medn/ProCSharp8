@@ -22,5 +22,8 @@ namespace InterfaceHierarchy
         {
             Console.WriteLine("Desnehando... Método UpsideDown()");
         }
+
+        public int TimeToDraw()
+            => 12;
     }
 }

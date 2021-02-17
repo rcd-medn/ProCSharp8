@@ -25,7 +25,15 @@ namespace InterfaceHierarchy
             if (myBitmap is IAdvancedDraw iAdvDraw)
             {
                 iAdvDraw.DrawUpsideDown();
+                Console.WriteLine($"Tempo para desenhar: {((IDrawable)myBitmap).TimeToDraw()}");
             }
+            Console.WriteLine($"Método TimeTodraw() do objeto: {myBitmap.TimeToDraw()}");
+
+            // NÃO COMPILA!
+            // myBitmap.TimeToDraw();
+            // Claro que a classe BitmapImage pode implementar o método TimeToDraw() que foi
+            // herdada pela interface IAdvancedDraw.
+            // A declaração de tal método está na classe IDrawable().
 
             Console.WriteLine("\n");
         }
